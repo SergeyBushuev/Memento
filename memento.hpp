@@ -6,11 +6,19 @@ class Memento
 {
   frined class Originator;
   private:
-     Memento(const T& state);
+     Memento(){}
+     Memento(const T& state)
+     {
+      this->_state = state;
+     }
      ~Memento(){}
-     void SetState(const T& state);
-     T GetState();
-     T _state;
+     void SetState(const T& state){
+      this->state=state_;
+     }
+     T GetState(){
+      return this->state_;
+     }
+     T state_;
 }
 
 template <typename T>
@@ -18,15 +26,21 @@ class Originator
 {
   public:
      Originator(){}
-     Originator(const T& state);
      ~Originator(){}
-     void RestoreToMemento(Memento* pMemento);
-     Memento* CreateMemento();
-     void SetState(const T& state);
-     T GetState();
-     void show();
+     void RestoreToMemento(Memento* nMemento){
+      this->state_=nMemento.GetState; 
+     }
+     Memento* CreateMemento(){
+      return new Memento(this->state_);
+     }
+     void SetState(const T& state){
+      this->state_=state; 
+     }
+     T GetState(){
+      return this->state_; 
+     }
   private:
-     T _state;
+     T state_;
 };
 
 class Caretaker
@@ -34,9 +48,13 @@ class Caretaker
   public:
      Caretaker(){}
      ~Caretaker(){}
-     void SetMemento(Memento*);
-     Memento* GetMemento();
+     void SetMemento(Memento* nMemento){
+      this->memento_ = nMemento; 
+     }
+     Memento* GetMemento(){
+      return this->memento_; 
+     }
   private:
-     Memento* _memento;
+     Memento* memento_;
 };
 #endif
