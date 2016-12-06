@@ -7,7 +7,7 @@ class Memento
   frined class Originator;
   private:
      Memento(const T& state);
-     ~Memento();
+     ~Memento(){}
      void SetState(const T& state);
      T GetState();
      T _state;
@@ -17,9 +17,9 @@ template <typename T>
 class Originator
 {
   public:
-     Originator();
+     Originator(){}
      Originator(const T& state);
-     ~Originator();
+     ~Originator(){}
      void RestoreToMemento(Memento* pMemento);
      Memento* CreateMemento();
      void SetState(const T& state);
@@ -32,8 +32,8 @@ class Originator
 class Caretaker
 {
   public:
-     Caretaker();
-     ~Caretaker();
+     Caretaker(){}
+     ~Caretaker(){}
      void SetMemento(Memento*);
      Memento* GetMemento();
   private:
