@@ -1,31 +1,27 @@
-#ifndef _MEMENTO_HPP_
-#define _MEMENTO_HPP_ 
 
-template <typename T>
 class Memento
 {
   frined class Originator;
   private:
      Memento(){}
-     Memento(const T& state)
+     Memento(const char& state)
      {
       this->_state = state;
      }
      ~Memento(){}
-     void SetState(const T& state){
+     void SetState(const char& state){
       this->state=state_;
      }
-     T GetState(){
+     char GetState(){
       return this->state_;
      }
-     T state_;
+     char state_;
 }
 
-template <typename T>
 class Originator
 {
   public:
-     Originator(){}
+     Originator():state("LLRLLRLLR"){}
      ~Originator(){}
      void RestoreToMemento(Memento* nMemento){
       this->state_=nMemento.GetState; 
@@ -33,14 +29,21 @@ class Originator
      Memento* CreateMemento(){
       return new Memento(this->state_);
      }
-     void SetState(const T& state){
+     void SetState(const char& state){
       this->state_=state; 
      }
-     T GetState(){
+     char GetState(){
       return this->state_; 
      }
+     void addL(){
+      state_=strcat(state_,"L")
+     }
+  
+     void addR(){
+      state_=strcat(state_,"R")
+     }
   private:
-     T state_;
+     char state_;
 };
 
 class Caretaker
@@ -57,4 +60,14 @@ class Caretaker
   private:
      Memento* memento_;
 };
-#endif
+
+int main(){
+    Originator Case new Originator;
+    Caretaker Seal new Caretaker;
+    Seal
+    Case.addL();
+    Case.addR();
+    Case.addL();
+    Case.addL();
+    Case.addR();
+}
