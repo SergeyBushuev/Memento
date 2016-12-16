@@ -65,8 +65,8 @@ private:
 };
 
 int main(){
-    Originator Case = *new Originator();
-    Caretaker Seal = *new Caretaker();
+    Originator *Case = new Originator();
+    Caretaker *Seal = new Caretaker();
     Seal.SetMemento(Case.CreateMemento());
     Case.ClearState();
     Case.addL();
